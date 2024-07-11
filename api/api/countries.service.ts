@@ -19,4 +19,8 @@ export class CountriesService {
         return this.httpClient.get<Array<CountryInfoDto>>(`${this.basePath}/all`);
     }
 
+    getRegionByName(region: string): Observable<Array<CountryInfoDto>> {        
+        return this.httpClient.get<Array<CountryInfoDto>>(`${this.basePath}/region/${region}`);
+    }
+
 }
