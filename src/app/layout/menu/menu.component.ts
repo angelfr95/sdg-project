@@ -11,7 +11,7 @@ import { GlobalsService } from '../../services/globals.service';
 export class MenuComponent {
 
   MENU_ID: string = appConfig.MENU_ID;
-  ROUTER_LINK: string = appConfig.ROUTE_TEST;
+  ROUTER_LINK: string = appConfig.ROUTE_COUNTRIES;
   menu: string[] = MENU;
 
   constructor(

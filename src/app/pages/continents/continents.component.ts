@@ -11,11 +11,11 @@ export interface RegionCustom {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  selector: 'app-continents',
+  templateUrl: './continents.component.html',
+  styleUrl: './continents.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class ContinentsComponent implements OnInit {
 
   regions: RegionCustom[] = [];
   filteredRegions: RegionCustom[] = [];

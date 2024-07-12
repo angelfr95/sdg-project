@@ -1,5 +1,5 @@
 {
-    "ROUTE_HOME": "home",
-    "ROUTE_TEST": "test",
+    "ROUTE_CONTINENTS": "continents",
+    "ROUTE_COUNTRIES": "country",
     "MENU_ID": "MENU-"
 }

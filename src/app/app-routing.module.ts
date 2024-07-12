@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import appConfig from '../assets/config/app-config.json';
-import { HomeComponent } from './pages/home/home.component';
-import { TestComponent } from './pages/test/test.component';
+import { ContinentsComponent } from './pages/continents/continents.component';
+import { CountriesComponent } from './pages/countries/countries.component';
 
 const publicRoutes: Routes = [
-  { path: appConfig.ROUTE_HOME, component: HomeComponent },
-  { path: appConfig.ROUTE_TEST, component: TestComponent },
-  { path: '', redirectTo: appConfig.ROUTE_HOME, pathMatch: 'full' },
-  { path: '**', redirectTo: appConfig.ROUTE_HOME },
+  { path: appConfig.ROUTE_CONTINENTS, component: ContinentsComponent },
+  { path: appConfig.ROUTE_COUNTRIES, component: CountriesComponent },
+  { path: '', redirectTo: appConfig.ROUTE_CONTINENTS, pathMatch: 'full' },
+  { path: '**', redirectTo: appConfig.ROUTE_CONTINENTS },
 ];
 
 const baseRoutes: Routes = [...publicRoutes];

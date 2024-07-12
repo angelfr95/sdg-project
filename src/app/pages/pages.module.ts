@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TestComponent } from './test/test.component';
-import { HomeComponent } from './home/home.component';
+import { CountriesComponent } from './countries/countries.component';
+import { ContinentsComponent } from './continents/continents.component';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    TestComponent
+    ContinentsComponent,
+    CountriesComponent
   ],
   imports: [
     CommonModule,
@@ -16,8 +16,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports: [
-    HomeComponent,
-    TestComponent
+    ContinentsComponent,
+    CountriesComponent
   ]
 })
 export class PagesModule { }

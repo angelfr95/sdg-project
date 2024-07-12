@@ -7,13 +7,13 @@ import { Subscription } from 'rxjs';
 import { GlobalsService } from '../../services/globals.service';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrl: './test.component.scss'
+  selector: 'app-countries',
+  templateUrl: './countries.component.html',
+  styleUrl: './countries.component.scss'
 })
-export class TestComponent implements OnInit {
+export class CountriesComponent implements OnInit {
 
-  ROUTER_LINK: string = appConfig.ROUTE_HOME;
+  ROUTER_LINK: string = appConfig.ROUTE_CONTINENTS;
   regionName: string = '';
   regionData: CountryInfoDto[] = [];
   filteredRegionData: CountryInfoDto[] = [];
