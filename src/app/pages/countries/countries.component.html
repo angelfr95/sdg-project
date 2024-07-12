@@ -1,7 +1,2 @@
-<div>
-    <p>Region name: {{regionName}}</p>
-    <button [routerLink]="ROUTER_LINK">Initial view</button>
-</div>
-<div *ngFor="let region of filteredRegionData">
-    <p>{{region.name.common}}: {{_globals.formatNumber(region.population!)}}</p>
-</div>
+<button [routerLink]="ROUTER_LINK">Initial view</button>
+<app-population-chart *ngIf="dataLoaded" [data]="filteredCountryData" [title]="'country'"></app-population-chart>

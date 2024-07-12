@@ -4,11 +4,7 @@ import { CountriesService } from '../../../../api/api/countries.service';
 import { CountryInfoDto } from '../../../../api/models/CountryInfoDto';
 import { Subscription } from 'rxjs';
 import appConfig from '../../../assets/config/app-config.json';
-
-export interface RegionCustom {
-  name?: string;
-  totalPopulation?: number;
-}
+import { NameAndPopulation } from '../../common/population-chart/population-chart.component';
 
 @Component({
   selector: 'app-continents',
@@ -17,10 +13,10 @@ export interface RegionCustom {
 })
 export class ContinentsComponent implements OnInit {
 
-  regions: RegionCustom[] = [];
-  filteredRegions: RegionCustom[] = [];
+  regions: NameAndPopulation[] = [];
+  filteredRegions: NameAndPopulation[] = [];
   poblationFilterSubscription!: Subscription;
-  MENU_ID: string = appConfig.MENU_ID;
+  dataLoaded: boolean = false;
 
   constructor(
     protected _globals: GlobalsService,
@@ -28,7 +24,7 @@ export class ContinentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this._globals.lastElementIndex !== -1) document.getElementById(this.MENU_ID + this._globals.lastElementIndex)!.style.backgroundColor = "";
+    if(this._globals.lastElementIndex !== -1) document.getElementById(appConfig.MENU_ID + this._globals.lastElementIndex)!.style.backgroundColor = "";
     this.poblationFilterSubscription = this._globals._poblationFilter.subscribe(value => {
       this.onPoblationFilterChange(value);
     });
@@ -36,14 +32,15 @@ export class ContinentsComponent implements OnInit {
   }
 
   getRegions() {
+    this.dataLoaded = false;
     this.countriesService.getAllCountries().subscribe({
       next: (resp: CountryInfoDto[]) => {
         resp.forEach((item: CountryInfoDto) => {
-          let index = this.regions.findIndex(region => region.name === item.region);
+          let index = this.regions.findIndex(region => region[0] === item.region);
           if (index !== -1) {
-            this.regions[index].totalPopulation! += item.population;
+            this.regions[index][1]! += item.population;
           } else {
-            this.regions.push({ name: item.region, totalPopulation: item.population });
+            this.regions.push([ item.region, item.population ]);
           }
         });
         this.onPoblationFilterChange(this._globals.poblationFilter);
@@ -55,7 +52,8 @@ export class ContinentsComponent implements OnInit {
   }
 
   onPoblationFilterChange(value: number) {
-    this.filteredRegions = this.regions.filter((region: RegionCustom) => region.totalPopulation! >= value);
+    this.filteredRegions = this.regions.filter((region: NameAndPopulation) => region[1]! >= value);
+    this.dataLoaded = true;
   }
 
 }

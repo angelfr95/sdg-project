@@ -4,6 +4,7 @@ import { CountriesComponent } from './countries/countries.component';
 import { ContinentsComponent } from './continents/continents.component';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
+import { PopulationChartModule } from '../common/population-chart/population.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    PopulationChartModule
   ],
   exports: [
     ContinentsComponent,
