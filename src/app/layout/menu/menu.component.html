@@ -1,10 +1,9 @@
 <mat-sidenav-container class="menu-container">
     <mat-sidenav mode="side" opened>
-        <mat-nav-list *ngFor="let item of regions">
-            <a mat-list-item [routerLink]="ROUTER_LINK" [queryParams]="{ regionName: item.name }">{{item.name}}</a>
+        <mat-nav-list *ngFor="let item of menu; let i = index">
+            <a id="{{MENU_ID}}{{i}}" mat-list-item [routerLink]="ROUTER_LINK" [queryParams]="{ regionName: item }" (click)="selectMenu(i)">
+                {{item}}
+            </a>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
 </mat-sidenav-container>

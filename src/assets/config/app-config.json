@@ -1,4 +1,5 @@
 {
     "ROUTE_HOME": "home",
-    "ROUTE_TEST": "test"
+    "ROUTE_TEST": "test",
+    "MENU_ID": "MENU-"
 }

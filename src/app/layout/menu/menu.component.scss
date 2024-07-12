@@ -3,10 +3,13 @@
 }
 
 mat-sidenav {
-    width: 200px;
+    width: 100%;
 }
 
-mat-sidenav-content {
-    padding: 20px;
+mat-sidenav-container {
+    height: 100%;
 }
-  
+
+mat-nav-list {
+    width: 100%;
+}

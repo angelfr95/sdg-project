@@ -1,48 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { CountryInfoDto } from '../../../../api/models/CountryInfoDto';
-import { CountriesService } from '../../../../api/api/countries.service';
+import { Component } from '@angular/core';
 import appConfig from '../../../assets/config/app-config.json';
-
-export interface RegionCustom {
-  name?: string;
-  totalPopulation?: number;
-}
+import { MENU } from './menu';
+import { GlobalsService } from '../../services/globals.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
+  MENU_ID: string = appConfig.MENU_ID;
   ROUTER_LINK: string = appConfig.ROUTE_TEST;
-  regions: RegionCustom[] = [];
+  menu: string[] = MENU;
 
   constructor(
-    private countriesService: CountriesService
+    private _globals: GlobalsService
   ) {}
 
-  ngOnInit(): void {
-    this.getRegions();
-  }
-
-  getRegions() {
-    this.countriesService.getAllCountries().subscribe({
-      next: (resp: CountryInfoDto[]) => {
-        resp.forEach((item: CountryInfoDto) => {
-          let index = this.regions.findIndex(region => region.name === item.region);
-          if (index !== -1) {
-            this.regions[index].totalPopulation! += item.population;
-          } else {
-            this.regions.push({ name: item.region, totalPopulation: item.population });
-          }
-        });
-        console.log(this.regions);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    })
+  selectMenu(index: any) {
+    
+    if(this._globals.lastElementIndex !== -1) {
+      let lastElement = document.getElementById(this.MENU_ID + this._globals.lastElementIndex);
+      lastElement!.style.backgroundColor = "";  
+    }
+    
+    let element = document.getElementById(this.MENU_ID + index);
+    element!.style.backgroundColor = "red";
+    this._globals.lastElementIndex = index;
+    
   }
 
 }
