@@ -34,7 +34,7 @@ export class CountriesComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this._globals.clearMenu();
       let element = document.getElementById(appConfig.MENU_ID + params['regionName']);
-      if(element) element.style.backgroundColor = "#D3D3D3";
+      if(element) element.style.backgroundColor = "var(--light-grey)";
       this.getRegionByName(params['regionName']);
     });
   }

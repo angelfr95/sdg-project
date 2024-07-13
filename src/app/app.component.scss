@@ -16,7 +16,7 @@ app-menu {
 }
 
 app-header {
-    // background-color: #4682B4;
+    background-color: var(--dark-blue);
     height: 80px;
     flex: 0 0 auto;
     background: url('../assets/img/world.png') no-repeat center center;

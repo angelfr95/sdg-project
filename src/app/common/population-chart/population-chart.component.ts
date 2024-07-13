@@ -52,7 +52,7 @@ export class PopulationChartComponent implements OnInit {
     series: [{
       name: 'Population',
       type: 'column',
-      colors: ['#A9CCE3', '#85C1E9',],
+      colors: ['var(--generic-blue)', 'var(--secondary-blue)',],
       colorByPoint: true,
       groupPadding: 0,
       data: this.data,

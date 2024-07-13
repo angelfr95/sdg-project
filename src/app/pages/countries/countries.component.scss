@@ -1,7 +1,7 @@
 .button-container {
     display: block;
     margin-left: auto;
-    background-color: #93BBF5;
+    background-color: var(--generic-blue);
 }
 
 .error-container {
@@ -9,11 +9,11 @@
     background-color: #FFFFFF;
     padding: 20px;
     margin-top: 10px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid var(--shadow-grey);
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #E74C3C;
+    color: var(--error);
 }
