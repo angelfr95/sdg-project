@@ -3,7 +3,6 @@ import { CountriesService } from '../../../../api/api/countries.service';
 import { CountryInfoDto } from '../../../../api/models/CountryInfoDto';
 import { ActivatedRoute } from '@angular/router';
 import appConfig from '../../../assets/config/app-config.json';
-import { Subscription } from 'rxjs';
 import { GlobalsService } from '../../services/globals.service';
 import { NameAndPopulation } from '../../common/population-chart/population-chart.component';
 
@@ -16,8 +15,6 @@ export class CountriesComponent implements OnInit {
 
   ROUTER_LINK: string = appConfig.ROUTE_CONTINENTS;
   countryData: NameAndPopulation[] = [];
-  filteredCountryData: NameAndPopulation[] = [];
-  poblationFilterSubscription!: Subscription;
   dataLoaded: boolean = false;
   errorService: boolean = false;
 
@@ -28,9 +25,6 @@ export class CountriesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.poblationFilterSubscription = this._globals._poblationFilter.subscribe(value => {
-      this.onPoblationFilterChange(value);
-    });
     this.route.queryParams.subscribe(params => {
       this._globals.clearMenu();
       let element = document.getElementById(appConfig.MENU_ID + params['regionName']);
@@ -48,18 +42,13 @@ export class CountriesComponent implements OnInit {
         resp.forEach((item: CountryInfoDto) => {
           this.countryData.push([ item.name.common, item.population ]);
         })
-        this.onPoblationFilterChange(this._globals.poblationFilter);
+        this.dataLoaded = true;
       },
       error: (error: any) => {
         this.errorService = true;
         console.log(error);
       }
     })
-  }
-
-  onPoblationFilterChange(value: number) {
-    this.filteredCountryData = this.countryData.filter((region: NameAndPopulation) => region[1] >= value);
-    this.dataLoaded = true;
   }
 
 }

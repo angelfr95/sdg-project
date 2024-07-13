@@ -1,5 +1,5 @@
 <button mat-button class="button-container" [routerLink]="ROUTER_LINK">Back to global view</button>
-<app-population-chart *ngIf="dataLoaded" [data]="filteredCountryData" [title]="'country'"></app-population-chart>
+<app-population-chart *ngIf="dataLoaded" [data]="countryData" [title]="'Population by country'"></app-population-chart>
 <div *ngIf="errorService" class="error-container">
     <h1>An error has occurred</h1>
     <p>Sorry, go back to the global view or select a continent</p>

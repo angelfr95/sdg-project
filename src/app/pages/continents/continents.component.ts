@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from '../../services/globals.service';
 import { CountriesService } from '../../../../api/api/countries.service';
 import { CountryInfoDto } from '../../../../api/models/CountryInfoDto';
-import { Subscription } from 'rxjs';
 import { NameAndPopulation } from '../../common/population-chart/population-chart.component';
 
 @Component({
@@ -13,8 +12,6 @@ import { NameAndPopulation } from '../../common/population-chart/population-char
 export class ContinentsComponent implements OnInit {
 
   regions: NameAndPopulation[] = [];
-  filteredRegions: NameAndPopulation[] = [];
-  poblationFilterSubscription!: Subscription;
   dataLoaded: boolean = false;
 
   constructor(
@@ -24,9 +21,6 @@ export class ContinentsComponent implements OnInit {
 
   ngOnInit(): void {
     this._globals.clearMenu();
-    this.poblationFilterSubscription = this._globals._poblationFilter.subscribe(value => {
-      this.onPoblationFilterChange(value);
-    });
     this.getRegions();
   }
 
@@ -42,17 +36,12 @@ export class ContinentsComponent implements OnInit {
             this.regions.push([ item.region, item.population ]);
           }
         });
-        this.onPoblationFilterChange(this._globals.poblationFilter);
+        this.dataLoaded = true;
       },
       error: (error: any) => {
         console.log(error);
       }
     })
-  }
-
-  onPoblationFilterChange(value: number) {
-    this.filteredRegions = this.regions.filter((region: NameAndPopulation) => region[1]! >= value);
-    this.dataLoaded = true;
   }
 
 }
