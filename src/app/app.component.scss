@@ -16,8 +16,11 @@ app-menu {
 }
 
 app-header {
-    height: 60px;
+    // background-color: #4682B4;
+    height: 80px;
     flex: 0 0 auto;
+    background: url('../assets/img/world.png') no-repeat center center;
+    background-size: cover;
 }
   
 .main-container {

@@ -26,7 +26,7 @@ export class MenuComponent {
     }
     
     let element = document.getElementById(this.MENU_ID + index);
-    element!.style.backgroundColor = "red";
+    element!.style.backgroundColor = "#D3D3D3";
     this._globals.lastElementIndex = index;
     
   }

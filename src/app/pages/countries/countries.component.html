@@ -1,2 +1,2 @@
-<button [routerLink]="ROUTER_LINK">Initial view</button>
+<button mat-button class="button-container" [routerLink]="ROUTER_LINK">Back to continents</button>
 <app-population-chart *ngIf="dataLoaded" [data]="filteredCountryData" [title]="'country'"></app-population-chart>
