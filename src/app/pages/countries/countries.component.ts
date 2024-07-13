@@ -19,6 +19,7 @@ export class CountriesComponent implements OnInit {
   filteredCountryData: NameAndPopulation[] = [];
   poblationFilterSubscription!: Subscription;
   dataLoaded: boolean = false;
+  errorService: boolean = false;
 
   constructor (
     protected _globals: GlobalsService,
@@ -32,7 +33,8 @@ export class CountriesComponent implements OnInit {
     });
     this.route.queryParams.subscribe(params => {
       this._globals.clearMenu();
-      document.getElementById(appConfig.MENU_ID + params['regionName'])!.style.backgroundColor = "#D3D3D3";
+      let element = document.getElementById(appConfig.MENU_ID + params['regionName']);
+      if(element) element.style.backgroundColor = "#D3D3D3";
       this.getRegionByName(params['regionName']);
     });
   }
@@ -40,6 +42,7 @@ export class CountriesComponent implements OnInit {
   getRegionByName(region: string) {
     this.countryData = [];
     this.dataLoaded = false;
+    this.errorService = false;
     this.countriesService.getRegionByName(region).subscribe({
       next: (resp: CountryInfoDto[]) => {
         resp.forEach((item: CountryInfoDto) => {
@@ -48,6 +51,7 @@ export class CountriesComponent implements OnInit {
         this.onPoblationFilterChange(this._globals.poblationFilter);
       },
       error: (error: any) => {
+        this.errorService = true;
         console.log(error);
       }
     })

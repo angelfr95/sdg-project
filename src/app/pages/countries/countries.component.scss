@@ -1,5 +1,19 @@
 .button-container {
     display: block;
     margin-left: auto;
-    background-color: #93bbf5;
+    background-color: #93BBF5;
+}
+
+.error-container {
+    display: block;
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #E74C3C;
 }
