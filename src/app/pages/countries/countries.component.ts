@@ -15,7 +15,6 @@ import { NameAndPopulation } from '../../common/population-chart/population-char
 export class CountriesComponent implements OnInit {
 
   ROUTER_LINK: string = appConfig.ROUTE_CONTINENTS;
-  regionName: string = '';
   countryData: NameAndPopulation[] = [];
   filteredCountryData: NameAndPopulation[] = [];
   poblationFilterSubscription!: Subscription;
@@ -32,9 +31,10 @@ export class CountriesComponent implements OnInit {
       this.onPoblationFilterChange(value);
     });
     this.route.queryParams.subscribe(params => {
-      this.regionName = params['regionName'];
-      this.getRegionByName(this.regionName);      
-  });
+      this._globals.clearMenu();
+      document.getElementById(appConfig.MENU_ID + params['regionName'])!.style.backgroundColor = "#D3D3D3";
+      this.getRegionByName(params['regionName']);
+    });
   }
 
   getRegionByName(region: string) {

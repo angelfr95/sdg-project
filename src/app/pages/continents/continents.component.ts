@@ -3,7 +3,6 @@ import { GlobalsService } from '../../services/globals.service';
 import { CountriesService } from '../../../../api/api/countries.service';
 import { CountryInfoDto } from '../../../../api/models/CountryInfoDto';
 import { Subscription } from 'rxjs';
-import appConfig from '../../../assets/config/app-config.json';
 import { NameAndPopulation } from '../../common/population-chart/population-chart.component';
 
 @Component({
@@ -24,7 +23,7 @@ export class ContinentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this._globals.lastElementIndex !== -1) document.getElementById(appConfig.MENU_ID + this._globals.lastElementIndex)!.style.backgroundColor = "";
+    this._globals.clearMenu();
     this.poblationFilterSubscription = this._globals._poblationFilter.subscribe(value => {
       this.onPoblationFilterChange(value);
     });
