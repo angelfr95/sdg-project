@@ -27,3 +27,9 @@ app-header {
     display: flex;
     flex: 1;
 }
+
+@media screen and (max-width: 650px) {
+    .main-container {
+        flex-direction: column;
+    }
+}

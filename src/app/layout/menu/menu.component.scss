@@ -3,7 +3,7 @@
 }
 
 mat-sidenav {
-    width: 100%;
+    width: 190px;
 }
 
 mat-sidenav-container {
@@ -12,4 +12,10 @@ mat-sidenav-container {
 
 mat-nav-list {
     width: 100%;
+}
+
+@media screen and (max-width: 650px) {
+    mat-sidenav {
+        width: 100%;
+    }
 }

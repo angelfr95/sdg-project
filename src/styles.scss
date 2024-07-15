@@ -11,3 +11,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --light-grey: #D3D3D3;
     --shadow-grey: #CCCCCC;
 }
+
+@media screen and (max-width: 650px) {
+    .mat-drawer-inner-container {
+        display: flex;
+        overflow-y: hidden !important;
+    }
+}

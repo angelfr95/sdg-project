@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import accessibility from 'highcharts/modules/accessibility';
 import { Subscription } from 'rxjs';
@@ -29,6 +29,10 @@ export class PopulationChartComponent implements OnInit {
     private _globals: GlobalsService
   ) {}
 
+  @HostListener('window:resize', ['$event']) onResize(event: any) {
+    this.resizeFunction();
+  }
+
   ngOnInit() {
     this.poblationFilterSubscription = this._globals._poblationFilter.subscribe(value => {
       this.onPoblationFilterChange(value);
@@ -38,13 +42,31 @@ export class PopulationChartComponent implements OnInit {
 
   onPoblationFilterChange(value: number) {
     this.filteredData = this.data.filter((region: NameAndPopulation) => region[1]! >= value);
-    this.chartOptions.chart!.scrollablePlotArea!.minWidth = this.filteredData.length > 25 ? 4000 : 1;
     (this.chartOptions.series![0] as Highcharts.SeriesColumnOptions).data = this.filteredData;
-    if(Highcharts.charts[0]) Highcharts.charts[0].update(this.chartOptions);
+    this.resizeFunction();
   }
 
   ngOnDestroy() {
     Highcharts.charts.length = 0;
+  }
+
+  updateScrollChar(elementsLength: number) {
+    this.chartOptions.chart!.scrollablePlotArea!.minWidth = this.filteredData.length > elementsLength ? 4000 : 1;
+  }
+
+  updateChar() {
+    if(Highcharts.charts[0]) Highcharts.charts[0].update(this.chartOptions);
+  }
+
+  resizeFunction() {
+    if(window.innerWidth < 800) {
+      this.updateScrollChar(6);
+    } else if(window.innerWidth >= 800 && window.innerWidth < 1290) {
+      this.updateScrollChar(10);
+    } else {
+      this.updateScrollChar(25);
+    }
+    this.updateChar();
   }
 
 }
